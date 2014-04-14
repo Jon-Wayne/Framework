@@ -9,5 +9,6 @@ function log(...)
 end
 
 function compile(fileName)
+	log("compile file :"..fileName)
 	dofile(fileName)
 end
