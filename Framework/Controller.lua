@@ -29,16 +29,30 @@ Controller = {}
 	the class instance seems like a "autorelease" object.
 
 	to use "self" to be the meta table of new "o", it's convinient to add
-	some meta methods into meta table.
+	some meta methods into meta table, what more important is child class 
+	can get super class using getmetatable() meta method and call some super
+	functions.
 ]]
 function Controller:create(o)
 	o = o or {}
 	setmetatable(o, self)
 	self.__index = self
 
-	o.name = "create";
+	-- variable:
+	o.name = "Controller"
 
 	return o
+end
+
+--[[
+	child class must override this function to get controller instance.
+]]
+function Controller:getCreateHandler()
+	
+end
+
+function Controller:isReleaseBefore()
+	return false
 end
 
 function Controller:setName(name)
@@ -49,6 +63,6 @@ function Controller:getName()
 	return self.name
 end
 
-function Controller:print()
-	log("This is a base controller")
+function Controller:test()
+	log("Controller:test")
 end

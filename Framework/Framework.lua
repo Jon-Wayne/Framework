@@ -8,4 +8,6 @@
 require("Base.lua")
 
 compile("Controller.lua")
-
+compile("Factory.lua")
+compile("SceneMgr.lua")
+compile("Controller.lua")
