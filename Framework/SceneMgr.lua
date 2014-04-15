@@ -23,7 +23,7 @@ function SceneMgr:sharedSceneMgr()
 end
 
 function SceneMgr:push(name, data)
-	local obj = Factory:getInstance(name, data)
+	local obj = Factory:sharedFactoryMgr():getInstance(name, data)
 	if obj == nil then
 		log("ERROR ! Can't create instance : '"..name.."' .")
 		return
@@ -59,10 +59,10 @@ function SceneMgr:replace(name, data)
 end
 
 function SceneMgr:printStack()
-	log("\n=====================================")
+	log("=====================================")
 	log("size : "..self.size)
 	for i=1, self.size do
-		log(i.." name : "..self.nameStack[self.size].." - data : "..tostring(self.dataStack[self.size]))
+		log(i.." name : "..self.nameStack[i].." - data : "..tostring(self.dataStack[i]))
 	end
 	log("=====================================")
 end
