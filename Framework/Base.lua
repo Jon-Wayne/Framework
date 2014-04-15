@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------------------
 -----
------  some utility for lua system, not for game logic and content.
+-----  some basement for lua system, not for game logic and content.
 -----
 -----------------------------------------------------------------------------------------------------
 
@@ -9,6 +9,7 @@ function log(...)
 end
 
 function compile(fileName)
-	log("compile file :"..fileName)
-	dofile(fileName)
+	local fullpath = CCFileUtils:sharedFileUtils():fullPathForFilename(fileName)
+	log("compile file :"..fullpath)
+	dofile(fullpath)
 end
