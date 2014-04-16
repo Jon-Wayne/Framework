@@ -4,6 +4,8 @@
 -----
 -----------------------------------------------------------------------------------------------------
 
+local NULL = "NULL"
+
 SceneMgr = {}
 
 function SceneMgr:sharedSceneMgr()
@@ -15,6 +17,7 @@ function SceneMgr:sharedSceneMgr()
 		
 		-- variable:
 		sceneMgrInstance.nameStack = {}
+		sceneMgrInstance.cntrStack = {}
 		sceneMgrInstance.dataStack = {}
 		sceneMgrInstance.size = 0
 	end
@@ -31,10 +34,11 @@ function SceneMgr:push(name, data)
 
 	self.size = self.size + 1
 	self.nameStack[self.size] = name
+	self.cntrStack[self.size] = obj
 	if data ~= nil then
 		self.dataStack[self.size] = data
 	else
-		self.dataStack[self.size] = {}
+		self.dataStack[self.size] = NULL
 	end
 
 	self:printStack()
@@ -46,7 +50,10 @@ function SceneMgr:pop()
 		return
 	end
 
-	self.dataStack[self.size] = nil
+	self.cntrStack[self.size]:destroy()
+
+	self.nameStack[self.size] = nil
+	self.cntrStack[self.size] = nil
 	self.dataStack[self.size] = nil
 	self.size = self.size - 1
 
@@ -59,12 +66,12 @@ function SceneMgr:replace(name, data)
 end
 
 function SceneMgr:printStack()
-	log("=====================================")
+	log("==========================================================================")
 	log("size : "..self.size)
-	for i=1, self.size do
-		log(i.." name : "..self.nameStack[i].." - data : "..tostring(self.dataStack[i]))
+	for i=self.size, 1, -1 do
+		log(i.."    [name: "..self.nameStack[i].."]    ------   [data: "..tostring(self.dataStack[i]).."]")
 	end
-	log("=====================================")
+	log("==========================================================================")
 end
 
 -- singleton instance pointer

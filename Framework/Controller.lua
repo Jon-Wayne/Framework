@@ -39,9 +39,18 @@ function Controller:create(o)
 	self.__index = self
 
 	-- variable:
-	o.name = "Controller"
+	o.name = o.name or "Controller"
+	o.view = CCLayer:create()
+	o.view:retain()
+
+	log("Controller:create")
 
 	return o
+end
+
+function Controller:destroy()
+	self.view:release()
+	log("Controller:destroy")
 end
 
 --[[
@@ -64,5 +73,5 @@ function Controller:getName()
 end
 
 function Controller:test()
-	log("Controller:test")
+	log("Controller:test "..self.name)
 end

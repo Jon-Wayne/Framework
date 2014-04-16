@@ -3,10 +3,18 @@ ArmyScene = Controller:create()
 
 function ArmyScene:create(o)
 	o = getmetatable(self):create(o)
+	setmetatable(o, self)
+	self.__index = self
 
 	-- variable:
-
+	log("ArmyScene:create")
 	return o
+end
+
+function ArmyScene:destroy()
+	Controller.destroy(self)
+	
+	log("ArmyScene:destroy")
 end
 
 function ArmyScene:getCreateHandler()

@@ -22,6 +22,42 @@ local function main()
 	SceneMgr:sharedSceneMgr():push("main", nil)
 	SceneMgr:sharedSceneMgr():push("item", nil)
 	SceneMgr:sharedSceneMgr():push("army", nil)
+
+	local mc = MainScene:create()
+	local ac = ArmyScene:create({name = "aaaaarrrrrmmmmmyyyy"})
+	local ic = ItemScene:create()
+
+	log("\n")
+	mc:test()
+	ac:test()
+	ic:test()
+
+	log("\n")
+	log(mc.name)
+	log(ac.name)
+	log(ic.name)
+
+	log("\n")
+	log(mc:getName())
+	log(ac:getName())
+	log(ic:getName())
+
+	mc:setName("mmmmmmm")
+
+	log("\n")
+	log(mc.name)
+	log(ac.name)
+	log(ic.name)
+
+	log("\n")
+	log(mc:getName())
+	log(ac:getName())
+	log(ic:getName())
+
+	log("\n")
+	SceneMgr:sharedSceneMgr():pop()
+	SceneMgr:sharedSceneMgr():pop()
+	SceneMgr:sharedSceneMgr():pop()
 end
 
 function _G_TRACEBACK_(msg)
