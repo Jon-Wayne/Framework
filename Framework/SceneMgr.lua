@@ -69,7 +69,7 @@ function SceneMgr:printStack()
 	log("==========================================================================")
 	log("size : "..self.size)
 	for i=self.size, 1, -1 do
-		log(i.."    [name: "..self.nameStack[i].."]    ------   [data: "..tostring(self.dataStack[i]).."]")
+		log(i.."    [Name: "..self.nameStack[i].."]    ------   [Data: "..tostring(self.dataStack[i]).."]")
 	end
 	log("==========================================================================")
 end

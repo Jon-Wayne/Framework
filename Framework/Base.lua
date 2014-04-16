@@ -23,6 +23,6 @@ end
 
 function compile(fileName)
 	local fullpath = CCFileUtils:sharedFileUtils():fullPathForFilename(fileName)
-	log("compile file :"..fullpath)
+	log("compile:"..fullpath)
 	dofile(fullpath)
 end

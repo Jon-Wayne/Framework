@@ -34,7 +34,7 @@ end
 function MainScene:test()
 	-- getmetatable(self):test()		-- wrong: = getmetatable(self).test(getmetatable(self)), it will 
 	-- getmetatable(self).test(self)
-	Controller
+	Controller.test(self)
  	log("MainScene:test")
 end
 
