@@ -16,6 +16,9 @@ function SceneMgr:sharedSceneMgr()
 		self.__index = self
 		
 		-- variable:
+		sceneMgrInstance.rootScene = CCScene:create()
+		sceneMgrInstance.rootScene:retain()
+
 		sceneMgrInstance.nameStack = {}
 		sceneMgrInstance.cntrStack = {}
 		sceneMgrInstance.dataStack = {}
@@ -32,6 +35,13 @@ function SceneMgr:push(name, data)
 		return
 	end
 
+	if obj:isReleaseBefore() and self.size > 0 then
+		log("release controller : "..self.size)
+		self.cntrStack[self.size]:destroy()
+		self.cntrStack[self.size] = NULL
+		self.rootScene:removeChildByTag(self.size, true)
+	end
+
 	self.size = self.size + 1
 	self.nameStack[self.size] = name
 	self.cntrStack[self.size] = obj
@@ -40,6 +50,8 @@ function SceneMgr:push(name, data)
 	else
 		self.dataStack[self.size] = NULL
 	end
+	
+	self.rootScene:addChild(obj.scene, self.size, self.size)
 
 	self:printStack()
 end
@@ -49,6 +61,8 @@ function SceneMgr:pop()
 		log("Scene stack is empty !")
 		return
 	end
+
+	self.rootScene:removeChildByTag(self.size, true)
 
 	self.cntrStack[self.size]:destroy()
 
@@ -69,7 +83,7 @@ function SceneMgr:printStack()
 	log("==========================================================================")
 	log("size : "..self.size)
 	for i=self.size, 1, -1 do
-		log(i.."    [Name: "..self.nameStack[i].."]    ------   [Data: "..tostring(self.dataStack[i]).."]")
+		log(i, "[Name: "..self.nameStack[i].."]", "[Controller: "..tostring(self.cntrStack[i]).."]", "[Data: "..tostring(self.dataStack[i]).."]")
 	end
 	log("==========================================================================")
 end

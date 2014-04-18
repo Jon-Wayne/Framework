@@ -7,6 +7,10 @@ function ItemScene:create(o)
 	self.__index = self
 
 	-- variable:
+
+	-- init
+	o:loadCCBScene("Gui10.ccbi")
+	
 	log("ItemScene:create")
 	return o
 end

@@ -9,6 +9,9 @@ function MainScene:create(o)			-- !!! [self] = [MainScene class template] here !
 	-- variable:
 	o.players = {50000022, 51515, 1515, 515}
 
+	-- init
+	o:loadCCBScene("Gui01.ccbi")
+
 	log("MainScene:create")
 
 	return o
@@ -39,3 +42,5 @@ function MainScene:test()
 end
 
 -- the final reason is: "self" is different in different situation
+-- when you create a new instence, you call: 	SuperClass:create() = instence, self is calss template
+-- but when you destroy it, you call: 			instence:destroy()				self is instence

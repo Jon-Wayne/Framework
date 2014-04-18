@@ -18,6 +18,13 @@ local function main()
 	Factory:sharedFactoryMgr():register("army", ArmyScene:getCreateHandler())
 	Factory:sharedFactoryMgr():printMap()
 
+	CCDirector:sharedDirector():runWithScene(SceneMgr:sharedSceneMgr().rootScene)
+
+	SceneMgr:sharedSceneMgr():push("main", nil)
+	SceneMgr:sharedSceneMgr():push("item", nil)
+	SceneMgr:sharedSceneMgr():push("army", nil)
+
+	--[[
 	log("\n")
 	SceneMgr:sharedSceneMgr():push("main", nil)
 	SceneMgr:sharedSceneMgr():push("item", nil)
@@ -58,6 +65,7 @@ local function main()
 	SceneMgr:sharedSceneMgr():pop()
 	SceneMgr:sharedSceneMgr():pop()
 	SceneMgr:sharedSceneMgr():pop()
+	]]
 end
 
 function _G_TRACEBACK_(msg)

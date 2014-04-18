@@ -7,6 +7,10 @@ function ArmyScene:create(o)
 	self.__index = self
 
 	-- variable:
+
+	-- init
+	o:loadCCBScene("Gui08.ccbi")
+	
 	log("ArmyScene:create")
 	return o
 end
