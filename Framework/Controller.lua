@@ -61,7 +61,7 @@ function Controller:getCreateHandler()
 end
 
 function Controller:isReleaseBefore()
-	return true
+	return false
 end
 
 function Controller:setName(name)
@@ -72,7 +72,6 @@ function Controller:getName()
 	return self.name
 end
 
----场景适配
 function Controller:sceneAdpat(scene)
 	if not scene then  
 		return
@@ -132,6 +131,11 @@ function Controller:loadCCBScene(ccbFileName)
 	local scene = ccbReader:createSceneWithNodeGraphFromFile(ccbFileName)
 	self:sceneAdpat(scene)
 	self.scene:addChild(scene)
+
+	local topNode = scene:getChildren():objectAtIndex(0)
+	tolua.cast(topNode,"CCGameLayer")
+
+	return topNode
 end
 
 function Controller:test()

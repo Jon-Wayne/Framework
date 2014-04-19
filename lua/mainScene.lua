@@ -12,6 +12,7 @@ function MainScene:create(o)			-- !!! [self] = [MainScene class template] here !
 	-- init
 	o:loadCCBScene("Gui01.ccbi")
 
+
 	log("MainScene:create")
 
 	return o

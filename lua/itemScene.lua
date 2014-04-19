@@ -10,6 +10,10 @@ function ItemScene:create(o)
 
 	-- init
 	o:loadCCBScene("Gui10.ccbi")
+	o.btnBack = topNode:getChildByTag(2):getChildByTag(3):getChildByTag(1)
+	tolua.cast(o.btnBack, "CCMenuItemImage")
+
+	o.btnBack:registerScriptTapHandler(self.btnbackCallback)
 	
 	log("ItemScene:create")
 	return o
@@ -35,3 +39,7 @@ function ItemScene:test()
  	log("ItemScene:test")
 end
 
+function ItemScene:btnbackCallback(tag, sender)
+	log("btnbackCallback")
+	SceneMgr:sharedFactoryMgr():pop()
+end

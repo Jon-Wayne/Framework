@@ -9,7 +9,11 @@ function ArmyScene:create(o)
 	-- variable:
 
 	-- init
-	o:loadCCBScene("Gui08.ccbi")
+	local topNode = o:loadCCBScene("Gui08.ccbi")
+	o.btnBack = topNode:getChildByTag(2):getChildByTag(1):getChildByTag(5):getChildByTag(1)
+	tolua.cast(o.btnBack, "CCMenuItemImage")
+
+	o.btnBack:registerScriptTapHandler(self.btnbackCallback)
 	
 	log("ArmyScene:create")
 	return o
@@ -35,3 +39,7 @@ function ArmyScene:test()
  	log("ArmyScene:test")
 end
 
+function ArmyScene:btnbackCallback(tag, sender)
+	log("btnbackCallback")
+	SceneMgr:sharedFactoryMgr():pop()
+end
