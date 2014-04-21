@@ -1,6 +1,14 @@
 
 ArmyScene = Controller:create()
 
+function ArmyScene:getCreateHandler()
+	local createrHandler = function(data)
+		local o = ArmyScene:create(data)
+		return o
+	end
+	return createrHandler
+end
+
 function ArmyScene:create(o)
 	o = getmetatable(self):create(o)
 	setmetatable(o, self)
@@ -25,21 +33,11 @@ function ArmyScene:destroy()
 	log("ArmyScene:destroy")
 end
 
-function ArmyScene:getCreateHandler()
-	
-	local createrHandler = function(data)
-		local o = ArmyScene:create(data)
-		return o
-	end
-	
-	return createrHandler
-end
-
 function ArmyScene:test()
  	log("ArmyScene:test")
 end
 
 function ArmyScene:btnbackCallback(tag, sender)
 	log("btnbackCallback")
-	SceneMgr:sharedFactoryMgr():pop()
+	SceneMgr:sharedSceneMgr():pop()
 end

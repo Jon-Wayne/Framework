@@ -1,6 +1,14 @@
 
 MainScene = Controller:create()
 
+function MainScene:getCreateHandler()
+	local createrHandler = function(data)
+		local o = MainScene:create(data)
+		return o
+	end
+	return createrHandler
+end
+
 function MainScene:create(o)			-- !!! [self] = [MainScene class template] here !!!
 	o = getmetatable(self):create(o)	-- 1 [o] = [Controller:create()], so [o] = [MainScene] now.
 	setmetatable(o, self)				-- 2 change the meta table of o, it's Controller before, but MainScene now, so level of o is "dowm".
@@ -18,21 +26,19 @@ function MainScene:create(o)			-- !!! [self] = [MainScene class template] here !
 	return o
 end
 
+function MainScene:reset()
+	
+end
+
+function MainScene:refresh()
+	
+end
+
 function MainScene:destroy()
 	Controller.destroy(self)
 
 	self.players = nil
 	log("MainScene:destroy")
-end
-
-function MainScene:getCreateHandler()
-
-	local createrHandler = function(data)
-		local o = MainScene:create(data)
-		return o
-	end
-	
-	return createrHandler
 end
 
 function MainScene:test()

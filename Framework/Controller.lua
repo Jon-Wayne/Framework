@@ -60,8 +60,8 @@ function Controller:getCreateHandler()
 	
 end
 
-function Controller:isReleaseBefore()
-	return false
+function Controller:isRemoveBefore()
+	return true
 end
 
 function Controller:setName(name)
@@ -70,6 +70,26 @@ end
 
 function Controller:getName()
 	return self.name
+end
+
+function Controller:reset()
+
+end
+
+function Controller:refresh()
+
+end
+
+function Controller:loadCCBScene(ccbFileName)
+	local ccbReader = CCBReader:create()
+	local scene = ccbReader:createSceneWithNodeGraphFromFile(ccbFileName)
+	self:sceneAdpat(scene)
+	self.scene:addChild(scene)
+
+	local topNode = scene:getChildren():objectAtIndex(0)
+	tolua.cast(topNode,"CCGameLayer")
+
+	return topNode
 end
 
 function Controller:sceneAdpat(scene)
@@ -124,18 +144,6 @@ function Controller:sceneAdpat(scene)
 	else
 		log("iphone classic layout")
 	end
-end
-
-function Controller:loadCCBScene(ccbFileName)
-	local ccbReader = CCBReader:create()
-	local scene = ccbReader:createSceneWithNodeGraphFromFile(ccbFileName)
-	self:sceneAdpat(scene)
-	self.scene:addChild(scene)
-
-	local topNode = scene:getChildren():objectAtIndex(0)
-	tolua.cast(topNode,"CCGameLayer")
-
-	return topNode
 end
 
 function Controller:test()

@@ -20,9 +20,12 @@ local function main()
 
 	CCDirector:sharedDirector():runWithScene(SceneMgr:sharedSceneMgr().rootScene)
 
-	SceneMgr:sharedSceneMgr():push("main", nil)
-	SceneMgr:sharedSceneMgr():push("army", nil)
-	SceneMgr:sharedSceneMgr():push("item", nil)
+	SceneMgr:sharedSceneMgr():push("main", {})
+	SceneMgr:sharedSceneMgr():push("army", {})
+	SceneMgr:sharedSceneMgr():push("item", {})
+	SceneMgr:sharedSceneMgr():push("main", {})
+	SceneMgr:sharedSceneMgr():push("army", {})
+	SceneMgr:sharedSceneMgr():push("item", {})
 
 	--[[
 	log("\n")
