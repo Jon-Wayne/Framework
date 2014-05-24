@@ -63,6 +63,13 @@ function SceneMgr:push(name, data)
 	else
 		self.dataStack[self.size] = NULL
 	end
+
+	local events = obj:expectedEvents
+	if events then
+		for _, event in pairs(events) do
+			EventMgr:sharedEventMgr():addListener(event, obj)
+		end
+	end
 	
 	self.rootScene:addChild(obj.scene, self.size, self.size)
 
@@ -120,6 +127,9 @@ function SceneMgr:removeScene(index, isPop)
 
 	if self.cntrStack[self.size] ~= NULL then
 		self.rootScene:removeChildByTag(self.size, true)
+
+		EventMgr:sharedEventMgr():removeListener(self.cntrStack[self.size])
+
 		self.cntrStack[self.size]:destroy()
 	end
 
@@ -150,6 +160,14 @@ function SceneMgr:resumeScene(index)
 			return
 		end
 		self.cntrStack[index] = obj
+
+		local events = obj:expectedEvents
+		if events then
+			for _, event in pairs(events) do
+				EventMgr:sharedEventMgr():addListener(event, obj)
+			end
+		end
+
 		self.rootScene:addChild(obj.scene, index, index)
 	end
 end

@@ -9,13 +9,14 @@
 require("Framework.lua")
 
 local function main()
+	compile("sceneDefine.lua")
 	compile("mainScene.lua")
 	compile("itemScene.lua")
 	compile("armyScene.lua")
 
-	Factory:sharedFactoryMgr():register("main", MainScene:getCreateHandler())
-	Factory:sharedFactoryMgr():register("army", ArmyScene:getCreateHandler())
-	Factory:sharedFactoryMgr():register("item", ItemScene:getCreateHandler())
+	Factory:sharedFactoryMgr():register(SCENE_MAIN, MainScene:getCreateHandler())
+	Factory:sharedFactoryMgr():register(SCENE_ARMY, ArmyScene:getCreateHandler())
+	Factory:sharedFactoryMgr():register(SCENE_ITEM, ItemScene:getCreateHandler())
 	Factory:sharedFactoryMgr():printMap()
 
 	CCDirector:sharedDirector():runWithScene(SceneMgr:sharedSceneMgr().rootScene)

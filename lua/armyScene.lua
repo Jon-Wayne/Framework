@@ -15,6 +15,7 @@ function ArmyScene:create(o)
 	self.__index = self
 
 	-- variable:
+	o.name = ARMY_MAIN
 
 	-- init
 	local topNode = o:loadCCBScene("Gui08.ccbi")

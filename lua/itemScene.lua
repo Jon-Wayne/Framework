@@ -15,6 +15,7 @@ function ItemScene:create(o)
 	self.__index = self
 
 	-- variable:
+	o.name = ITEM_MAIN
 
 	-- init
 	local topNode = o:loadCCBScene("Gui10.ccbi")

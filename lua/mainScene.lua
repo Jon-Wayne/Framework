@@ -15,6 +15,7 @@ function MainScene:create(o)			-- !!! [self] = [MainScene class template] here !
 	self.__index = self					-- 3 
 
 	-- variable:
+	o.name = SCENE_MAIN
 	o.players = {50000022, 51515, 1515, 515}
 
 	-- init
